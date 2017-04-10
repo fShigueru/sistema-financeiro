@@ -1,0 +1,15 @@
+{
+    "name": "root/code",
+    "authors": [
+        {
+            "name": "Filipe Shigueru",
+            "email": "filipe.shigueru@yahoo.com.br"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "SONFin\\": "src/"
+        }
+    }
+}
