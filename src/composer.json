@@ -1,15 +1,17 @@
 {
-    "name": "root/code",
+    "name": "root/sistema-financeiro",
     "authors": [
         {
             "name": "Filipe Shigueru",
             "email": "filipe.shigueru@yahoo.com.br"
         }
     ],
-    "require": {},
+    "require": {
+        "robmorgan/phinx": "0.7.1"
+    },
     "autoload": {
         "psr-4": {
-            "SONFin\\": "src/"
+            "SONFin\\": "src"
         }
     }
 }
