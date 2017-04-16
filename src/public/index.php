@@ -1,6 +1,8 @@
 <?php
 
 use SONFin\Application;
+use SONFin\Models\CategoryCost;
+use SONFin\Plugins\DbPlugin;
 use SONFin\Plugins\ViewPlugin;
 use SONFin\ServiceContainer;
 use SONFin\Plugins\RoutePlugin;
@@ -13,6 +15,7 @@ $app = new Application($serviceContainer);
 
 $app->plugin(new RoutePlugin());
 $app->plugin(new ViewPlugin());
+$app->plugin(new DbPlugin());
 
 /*
 $app->get('/{name}', function (ServerRequestInterface $request) use($app) {
@@ -29,7 +32,9 @@ $app->get('/home/{name}', function (ServerRequestInterface $request){
 
 $app->get('/category-costs', function () use ($app) {
     $view = $app->service('view.renderer');
-    return $view->render('category-costs/list.html.twig');
+    $model = new CategoryCost();
+    $categories = $model->all();
+    return $view->render('category-costs/list.html.twig', ['categories' => $categories]);
 });
 
 $app->start();
