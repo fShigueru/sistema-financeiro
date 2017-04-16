@@ -30,7 +30,7 @@ class RoutePlugin implements PluginInterface
         $container->add(RequestInterface::class, $this->getRequest());
         $container->addLazy('route', function (ContainerInterface $container) {
             $matcher = $container->get('routing.matcher');
-            $request = $container->add(RequestInterface::class);
+            $request = $container->get(RequestInterface::class);
             return $matcher->match($request);
         });
     }

@@ -2,7 +2,11 @@
 declare(strict_types=1);
 namespace SONFin;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use SONFin\Plugins\PluginInterface;
+use Zend\Diactoros\Response\SapiEmitter;
 
 class Application
 {
@@ -33,5 +37,40 @@ class Application
     public function plugin(PluginInterface $plugin) : void
     {
         $plugin->register($this->serviceContainer);
+    }
+
+    public function get($path, $action, $name = null) : Application
+    {
+        $routing = $this->service('routing');
+        $routing->get($name, $path, $action);
+        return $this;
+    }
+
+    public function start()
+    {
+        $router = $this->service('route');
+
+        /** @var ServerRequestInterface $request */
+        $request = $this->service(RequestInterface::class);
+
+
+        if (!$router) {
+            echo "Page no found";
+            exit;
+        }
+
+        foreach ($router->attributes as $key => $value) {
+            $request = $request->withAttribute($key, $value);
+        }
+
+        $callable = $router->handler;
+        $response = $callable($request);
+        $this->emitResponse($response);
+    }
+
+    protected function emitResponse(ResponseInterface $response)
+    {
+        $emitter = new SapiEmitter();
+        $emitter->emit($response);
     }
 }
