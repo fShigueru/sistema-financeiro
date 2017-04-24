@@ -55,6 +55,18 @@ $app
 
         return $app->route('category-costs.list');
     }, 'category-costs.update')
+    ->get('/category-costs/{id}/show', function (ServerRequestInterface $request) use ($app) {
+        $view = $app->service('view.renderer');
+        $id = $request->getAttribute('id');
+        $category = CategoryCost::findOrFail($id);
+        return $view->render('category-costs/show.html.twig', ['category' => $category]);
+    }, 'category-costs.show')
+    ->get('/category-costs/{id}/delete', function (ServerRequestInterface $request) use ($app) {
+        $id = $request->getAttribute('id');
+        $category = CategoryCost::findOrFail($id);
+        $category->delete();
+        return $app->route('category-costs.list');
+    }, 'category-costs.delete')
 ;
 
 $app->start();
