@@ -6,6 +6,5 @@ class CreateUserTable extends AbstractMigration
 {
     public function up()
     {
-        
     }
 }
