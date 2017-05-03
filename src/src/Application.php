@@ -74,7 +74,6 @@ class Application
         /** @var ServerRequestInterface $request */
         $request = $this->service(RequestInterface::class);
 
-
         if (!$router) {
             echo "Page no found";
             exit;

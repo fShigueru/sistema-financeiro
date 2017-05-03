@@ -16,10 +16,7 @@ $app->plugin(new RoutePlugin());
 $app->plugin(new ViewPlugin());
 $app->plugin(new DbPlugin());
 
-$app->get('/home/{name}', function (ServerRequestInterface $request){
-    $response = new \Zend\Diactoros\Response();
-    $response->getBody()->write("reponse com emitter");
-    return $response;
-});
-
 require_once  __DIR__ . '/../src/controllers/category-costs.php';
+require_once  __DIR__ . '/../src/controllers/users.php';
+
+$app->start();

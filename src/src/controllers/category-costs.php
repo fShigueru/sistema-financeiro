@@ -48,5 +48,3 @@ $app
         return $app->route('category-costs.list');
     }, 'category-costs.delete')
 ;
-
-$app->start();
