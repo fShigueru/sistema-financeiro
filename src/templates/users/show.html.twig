@@ -6,16 +6,16 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        Ver categoria de custo
+                        Ver usuário
                     </h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="{{ route('category-costs.edit', {'id':category.id}) }}" class="btn btn-primary">
+                            <a href="{{ route('users.edit', {'id':user.id}) }}" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a href="{{ route('category-costs.delete', {'id':category.id}) }}" class="btn btn-danger">
+                            <a href="{{ route('users.delete', {'id':user.id}) }}" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </div>
@@ -27,11 +27,15 @@
                                 <tbody>
                                     <tr>
                                        <th scope="row">#</th>
-                                       <td>{{ category.id }}</td>
+                                       <td>{{ user.id }}</td>
                                     </tr>
                                     <tr>
                                        <th scope="row">Nome</th>
-                                       <td>{{ category.name }}</td>
+                                       <td>{{ user.first_name }}</td>
+                                    </tr>
+                                    <tr>
+                                       <th scope="row">E-mail</th>
+                                       <td>{{ user.email }}</td>
                                     </tr>
                                 </tbody>
                             </table>
